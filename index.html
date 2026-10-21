@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#401b2a">
+<link rel="manifest" href="manifest.json">
+<title>Ma cave à vin</title>
+<style>
+:root{--wine:#401b2a;--wine2:#6e3047;--cream:#f7f3ef;--card:#fff;--ink:#2b2526;--muted:#766c6d;--line:#e7dddf;--green:#28684d;--red:#a33b43}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px system-ui,-apple-system,sans-serif}
+header{background:var(--wine);color:#fff;padding:22px 18px 18px;border-radius:0 0 22px 22px}
+header .eyebrow{opacity:.8;font-size:12px;text-transform:uppercase;letter-spacing:.12em}h1{margin:4px 0 3px;font-size:26px}header p{margin:0;opacity:.85;font-size:14px}
+main{max-width:760px;margin:auto;padding:16px 14px 96px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 18px}
+.stat,.panel,.slot,.wine{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 2px 8px #34192308}
+.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{font-size:25px;display:block;margin-top:4px}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 10px}.sectionhead h2{font-size:18px;margin:0}.small{color:var(--muted);font-size:13px}
+.slots{display:none!important;gap:10px}.cabinet-stage{position:relative;max-width:360px;margin:0 auto 16px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:300px}.cabinet-stage img{display:block;width:100%;height:auto;object-fit:contain}.cabinet-hotspot{position:absolute;left:35%;width:43%;height:9.5%;border:1px solid #fff9;background:#401b2a35;color:#fff;text-shadow:0 1px 3px #000;font-weight:800;border-radius:8px;padding:4px;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 1px 5px #0003}.cabinet-hotspot.selected{background:#8b355a88;border:2px solid #fff}.cabinet-hotspot small{font-size:10px;font-weight:600}.cabinet-caption{text-align:center;color:var(--muted);font-size:12px;margin:-5px 0 12px}.slot{display:flex;align-items:center;gap:12px;width:100%;text-align:left;color:inherit;cursor:pointer}
+.slot.selected{border:2px solid var(--wine2);padding:13px}.sloticon{width:44px;height:44px;border-radius:12px;background:#f1e5e9;display:grid;place-items:center;font-size:23px;flex-shrink:0}
+.slotmain{flex:1;min-width:0}.slotname{font-weight:700}.slotmeta{font-size:13px;color:var(--muted);margin-top:2px}.arrow{font-size:23px;color:var(--muted)}
+.progress{height:6px;background:#eee6e7;border-radius:9px;overflow:hidden;margin-top:9px}.progress div{height:100%;background:var(--wine2);border-radius:9px}
+button,.button{border:0;border-radius:12px;padding:12px 14px;font:600 14px system-ui;cursor:pointer;background:var(--wine);color:white}
+button.secondary{background:#f1e7ea;color:var(--wine)}button.danger{background:#fae9e9;color:var(--red)}button:disabled{opacity:.4;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1}
+.panel{margin-top:14px}.panel h2{font-size:19px;margin:0 0 4px}.panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.wines{display:grid;gap:9px;margin-top:12px}.wine{padding:12px;box-shadow:none}.winetop{display:flex;justify-content:space-between;gap:8px}.winename{font-weight:700}.wineinfo{font-size:13px;color:var(--muted);margin-top:3px}.qty{font-weight:700;color:var(--wine);white-space:nowrap}.wineactions{display:flex;gap:7px;margin-top:10px}.wineactions button{padding:8px 10px;flex:1;font-size:13px}
+.empty{padding:22px 12px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;margin-top:12px}
+form{display:grid;gap:12px}label{display:grid;gap:5px;font-size:13px;font-weight:650;color:#55494b}input,select,textarea{width:100%;border:1px solid #d9cccf;border-radius:10px;padding:11px 12px;font:16px system-ui;background:#fff;color:var(--ink)}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.formbuttons{display:flex;gap:8px}.formbuttons button{flex:1}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffefdf2;border-top:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(12px);z-index:5}nav button{flex:1;max-width:230px;background:transparent;color:var(--muted)}nav button.active{background:#f1e5e9;color:var(--wine)}
+.view{display:none}.view.active{display:block}.notice{font-size:12px;color:var(--muted);line-height:1.45;margin-top:12px}
+.historyitem{border-bottom:1px solid var(--line);padding:10px 0;font-size:14px}.historyitem:last-child{border:0}.pill{display:inline-block;background:#f1e7ea;color:var(--wine);padding:3px 7px;border-radius:20px;font-size:11px;font-weight:700}
+@media(min-width:620px){.slots{grid-template-columns:1fr 1fr}.slot{min-height:100px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">Gestion personnelle</div><h1>🍷 Ma cave à vin</h1><p>Mes bouteilles, compartiment par compartiment.</p></header>
+<main>
+<section id="homeView" class="view active">
+ <div id="overviewContent">
+ <div class="stats">
+  <div class="stat"><span>Bouteilles en cave</span><strong id="totalBottles">0</strong><small id="totalDetail" class="small">sur 0 places</small></div>
+  <div class="stat"><span>Places disponibles</span><strong id="freePlaces">0</strong><small class="small" id="fillPercent">0 % occupé</small></div>
+ </div>
+ <div class="sectionhead"><h2>Vue de ma cave</h2><button class="secondary" id="editCapacities">Capacités</button></div>
+ <div class="cabinet-stage" aria-label="Vue de la cave à vin"><img id="cabinetImage" src="cave-artevino.png" alt="Cave à vin Artevino Oxygen, modèle OXM1T182NVD" onerror="this.style.display='none';document.getElementById('imageFallback').style.display='block'">
+  <div id="imageFallback" style="display:none;padding:35px 18px;text-align:center;color:#766c6d">Image de la cave indisponible. Vérifie que le fichier cave-artevino.png est présent à côté de l’application.</div>
+  <button class="cabinet-hotspot" style="top:16%" data-slot="0"><span>1</span><small id="hotspot0">0 bouteille</small></button>
+  <button class="cabinet-hotspot" style="top:32%" data-slot="1"><span>2</span><small id="hotspot1">0 bouteille</small></button>
+  <button class="cabinet-hotspot" style="top:48%" data-slot="2"><span>3</span><small id="hotspot2">0 bouteille</small></button>
+  <button class="cabinet-hotspot" style="top:64%" data-slot="3"><span>4</span><small id="hotspot3">0 bouteille</small></button>
+  <button class="cabinet-hotspot" style="top:80%" data-slot="4"><span>5</span><small id="hotspot4">0 bouteille</small></button>
+ </div><div class="cabinet-caption">Appuie sur un numéro directement sur la photo pour ouvrir le compartiment correspondant.</div>
+ <div class="slots" id="slots"></div>
+ <div class="notice">Les données sont enregistrées dans le navigateur de ce téléphone. Pense à exporter régulièrement une sauvegarde depuis l'onglet « Réglages ».</div>
+ </div>
+ <div id="selectedPanel" class="panel" style="display:none"></div>
+</section>
+<section id="settingsView" class="view">
+ <div class="sectionhead"><h2>Réglages de la cave</h2></div>
+ <div class="panel"><h2>Capacité des compartiments</h2><p class="small">Indique le nombre maximum de bouteilles pour chaque compartiment.</p>
+ <form id="capacityForm"></form></div>
+ <div class="panel"><h2>Sauvegarde</h2><p class="small">Exporte tes données pour les conserver ou les transférer vers un autre téléphone.</p>
+ <div class="actions"><button id="exportBtn">Exporter la sauvegarde</button><button class="secondary" id="importBtn">Importer</button></div><input type="file" id="importFile" accept="application/json" hidden>
+ <p class="notice">Pour retrouver la même cave sur plusieurs appareils, il faudra ajouter une synchronisation en ligne. Cette version conserve les données localement sur ce navigateur.</p></div>
+ <div class="panel"><h2>Historique récent</h2><div id="history"></div><button class="danger" id="clearHistory" style="margin-top:12px">Effacer l’historique</button></div>
+</section>
+</main>
+<nav><button id="homeTab" class="active">🍷 Ma cave</button><button id="settingsTab">⚙️ Réglages</button></nav>
+<dialog id="wineDialog" style="border:0;border-radius:18px;padding:0;width:calc(100% - 28px);max-width:500px;box-shadow:0 20px 60px #0004">
+ <div style="padding:20px">
+  <h2 id="dialogTitle" style="margin:0 0 14px">Ajouter un vin</h2>
+  <form id="wineForm">
+   <input id="wineId" type="hidden">
+   <label>Nom du vin *<input id="wineName" required maxlength="100" placeholder="Ex. Château..."></label>
+   <div class="two"><label>Appellation<input id="wineAppellation" maxlength="100" placeholder="Ex. Saint-Émilion"></label><label>Millésime<input id="wineYear" inputmode="numeric" maxlength="4" placeholder="Ex. 2019"></label></div>
+   <label>Domaine / producteur<input id="wineProducer" maxlength="100" placeholder="Nom du domaine"></label>
+   <div class="two"><label>Couleur<select id="wineColor"><option>Rouge</option><option>Blanc</option><option>Rosé</option><option>Effervescent</option><option>Autre</option></select></label><label>Quantité de bouteilles<input id="wineQty" type="number" min="1" max="999" value="1" required></label></div>
+   <label>Prix par bouteille (€)<input id="winePrice" type="number" min="0" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex. 18,50"></label>
+   <label>Date idéale de dégustation<input id="wineDrinkDate" type="date"><span class="small">Date indicative : à confirmer selon le domaine, le millésime et la conservation.</span></label>
+   <div class="actions"><button type="button" class="secondary" id="searchDrinkDate">🔎 Rechercher le conseil de garde</button></div>
+   <label>Photos de la bouteille (étiquette, contre-étiquette…)</label>
+   <div class="two"><label class="button" style="text-align:center">📷 Prendre une photo<input id="wineCamera" type="file" accept="image/*" capture="environment" hidden></label><label class="button secondary" style="text-align:center">🖼️ Choisir des photos<input id="winePhotosInput" type="file" accept="image/*" multiple hidden></label></div>
+   <div id="photoPreview" class="two"></div><p class="small">Les photos peuvent aider à retrouver les informations manquantes. Elles sont enregistrées avec la fiche.</p>
+   <label>Notes (facultatif)<textarea id="wineNotes" rows="2" maxlength="500" placeholder="Garde, accord, prix…"></textarea></label>
+   <div class="formbuttons"><button type="button" class="secondary" id="cancelWine">Annuler</button><button type="submit">Enregistrer</button></div>
+  </form>
+ </div>
+</dialog>
+<dialog id="moveDialog" style="border:0;border-radius:18px;padding:20px;width:calc(100% - 28px);max-width:420px">
+ <h2 style="margin-top:0">Déplacer les bouteilles</h2><form id="moveForm"><label>Compartiment de destination<select id="moveTarget"></select></label><label>Quantité à déplacer<input id="moveQty" type="number" min="1" value="1" required></label><div class="formbuttons"><button type="button" class="secondary" id="cancelMove">Annuler</button><button type="submit">Déplacer</button></div></form>
+</dialog>
+<script>
+const KEY='maCaveVin_v1';
+const defaults={capacities:[24,24,24,24,24],wines:[],history:[]};
+let data=load(),selected=0,stagedPhotos=[],compartmentOpen=false;
+function load(){try{return {...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return structuredClone(defaults)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function count(i){return data.wines.filter(w=>w.compartment===i).reduce((s,w)=>s+w.qty,0)}
+function total(){return data.wines.reduce((s,w)=>s+w.qty,0)}
+function addHistory(action,w,qty,from,to){data.history.unshift({date:new Date().toISOString(),action,name:w.name,qty,from,to});data.history=data.history.slice(0,100)}
+function showView(which){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(which+'View').classList.add('active');document.getElementById('homeTab').classList.toggle('active',which==='home');document.getElementById('settingsTab').classList.toggle('active',which==='settings');if(which==='settings')renderSettings();window.scrollTo(0,0)}
+document.getElementById('homeTab').onclick=()=>{compartmentOpen=false;showView('home');render()};document.getElementById('settingsTab').onclick=()=>showView('settings');
+function render(){const t=total(),cap=data.capacities.reduce((a,b)=>a+b,0);document.getElementById('overviewContent').style.display=compartmentOpen?'none':'block';document.getElementById('selectedPanel').style.display=compartmentOpen?'block':'none';document.getElementById('totalBottles').textContent=t;document.getElementById('totalDetail').textContent='sur '+cap+' places';document.getElementById('freePlaces').textContent=Math.max(0,cap-t);document.getElementById('fillPercent').textContent=(cap?Math.round(t/cap*100):0)+' % occupé';
+document.getElementById('slots').innerHTML=data.capacities.map((c,i)=>{let n=count(i),pct=c?Math.min(100,n/c*100):0;return `<button class="slot ${selected===i?'selected':''}" data-slot="${i}"><div class="sloticon">🍷</div><div class="slotmain"><div class="slotname">Compartiment ${i+1}</div><div class="slotmeta">${n} bouteille${n>1?'s':''} · ${Math.max(0,c-n)} place${c-n>1?'s':''} libre${c-n>1?'s':''} sur ${c}</div><div class="progress"><div style="width:${pct}%"></div></div></div><span class="arrow">›</span></button>`}).join('');
+for(let i=0;i<5;i++){let el=document.getElementById('hotspot'+i);if(el)el.textContent=count(i)+' / '+data.capacities[i];}
+document.querySelectorAll('.cabinet-hotspot').forEach(b=>b.classList.toggle('selected',+b.dataset.slot===selected));
+document.querySelectorAll('[data-slot]').forEach(b=>b.onclick=()=>{selected=+b.dataset.slot;compartmentOpen=true;render();renderPanel();window.scrollTo({top:0,behavior:'smooth'});});
+if(compartmentOpen)renderPanel()}
+function renderPanel(){const p=document.getElementById('selectedPanel');p.style.display=compartmentOpen?'block':'none';let list=data.wines.filter(w=>w.compartment===selected);p.innerHTML=`<button type="button" class="secondary" id="backToCabinet" style="margin-bottom:14px">‹ Retour à la cave</button><div class="panelhead"><div><h2>Compartiment ${selected+1}</h2><div class="small">${count(selected)} / ${data.capacities[selected]} bouteilles</div></div><span class="pill">${Math.max(0,data.capacities[selected]-count(selected))} places libres</span></div><div class="actions" style="margin-top:14px"><button id="addWineBtn" ${count(selected)>=data.capacities[selected]?'disabled':''}>＋ Ajouter un vin</button></div>${list.length?'<div class="wines">'+list.map(w=>`<div class="wine"><div class="winetop"><div><div class="winename">${esc(w.name)}</div><div class="wineinfo">${[w.producer,w.appellation,w.year,w.color].filter(Boolean).map(esc).join(' · ')}</div>${w.drinkDate?`<div class="wineinfo">🍷 À boire idéalement avant le ${new Date(w.drinkDate+'T12:00:00').toLocaleDateString('fr-FR')}</div>`:''}${w.price!==undefined&&w.price!==''&&w.price!==null?`<div class="wineinfo">💶 ${Number(w.price).toLocaleString('fr-FR',{style:'currency',currency:'EUR'})} / bouteille · Total : ${(Number(w.price)*w.qty).toLocaleString('fr-FR',{style:'currency',currency:'EUR'})}</div>`:''}${w.notes?`<div class="wineinfo">${esc(w.notes)}</div>`:''}${w.photos?.length?`<div class="photo-strip">${w.photos.map(src=>`<img src="${src}" alt="Photo de ${esc(w.name)}" style="width:54px;height:54px;object-fit:cover;border-radius:8px;margin:6px 5px 0 0">`).join('')}</div>`:''}</div><div class="qty">× ${w.qty}</div></div><div class="wineactions"><button class="secondary" data-edit="${w.id}">Modifier</button><button class="secondary" data-out="${w.id}">− Sortir 1</button><button class="secondary" data-move="${w.id}">Déplacer</button></div></div>`).join('')+'</div>':'<div class="empty">Aucune bouteille dans ce compartiment.<br>Ajoute ton premier vin avec le bouton ci-dessus.</div>'}`;
+document.getElementById('backToCabinet').onclick=()=>{compartmentOpen=false;render();window.scrollTo({top:0,behavior:'smooth'})};
+document.getElementById('addWineBtn').onclick=()=>openWine();
+p.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openWine(b.dataset.edit));
+p.querySelectorAll('[data-out]').forEach(b=>b.onclick=()=>removeBottle(b.dataset.out));
+p.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>openMove(b.dataset.move));
+}
+function openWine(id){if(count(selected)>=data.capacities[selected]&&!id){alert('Ce compartiment est plein. Augmente sa capacité ou libère une place.');return}let w=id?data.wines.find(x=>x.id===id):null;document.getElementById('wineForm').reset();document.getElementById('wineId').value=w?.id||'';document.getElementById('dialogTitle').textContent=w?'Modifier la fiche vin':'Ajouter un vin';document.getElementById('wineName').value=w?.name||'';document.getElementById('wineAppellation').value=w?.appellation||'';document.getElementById('wineYear').value=w?.year||'';document.getElementById('wineProducer').value=w?.producer||'';document.getElementById('wineColor').value=w?.color||'Rouge';document.getElementById('wineQty').value=w?.qty||1;document.getElementById('wineQty').max=w?999:Math.max(1,data.capacities[selected]-count(selected));document.getElementById('winePrice').value=w?.price??'';document.getElementById('wineNotes').value=w?.notes||'';document.getElementById('wineDrinkDate').value=w?.drinkDate||'';stagedPhotos=[...(w?.photos||[])];renderPhotoPreview();document.getElementById('wineDialog').showModal()}
+document.getElementById('cancelWine').onclick=()=>document.getElementById('wineDialog').close();
+async function photoToDataURL(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1100,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.78))};img.src=reader.result};reader.readAsDataURL(file)})}
+function renderPhotoPreview(){const box=document.getElementById('photoPreview');if(!box)return;box.innerHTML=stagedPhotos.map((src,i)=>`<div style="position:relative"><img src="${src}" alt="Photo ajoutée" style="width:100%;height:90px;object-fit:cover;border-radius:10px"><button type="button" class="danger" data-remove-photo="${i}" style="position:absolute;top:4px;right:4px;padding:4px 8px">×</button></div>`).join('');box.querySelectorAll('[data-remove-photo]').forEach(b=>b.onclick=()=>{stagedPhotos.splice(+b.dataset.removePhoto,1);renderPhotoPreview()})}
+async function addSelectedPhotos(files){for(const file of [...files]){if(!file.type.startsWith('image/'))continue;if(stagedPhotos.length>=4){alert('Maximum 4 photos par fiche.');break}try{stagedPhotos.push(await photoToDataURL(file))}catch(e){alert('Impossible de lire une photo.')}}renderPhotoPreview()}
+document.getElementById('wineCamera').onchange=async e=>{await addSelectedPhotos(e.target.files);e.target.value=''};
+document.getElementById('winePhotosInput').onchange=async e=>{await addSelectedPhotos(e.target.files);e.target.value=''};
+document.getElementById('searchDrinkDate').onclick=()=>{const q=[document.getElementById('wineName').value,document.getElementById('wineProducer').value,document.getElementById('wineAppellation').value,document.getElementById('wineYear').value,'fenêtre de dégustation conseil de garde'].filter(Boolean).join(' ');if(!document.getElementById('wineName').value.trim()&&!document.getElementById('wineAppellation').value.trim()){alert('Saisis au moins le nom du vin ou son appellation avant de rechercher.');return}window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener')};
+document.getElementById('wineForm').onsubmit=async e=>{e.preventDefault();let id=document.getElementById('wineId').value,qty=+document.getElementById('wineQty').value;let w={id:id||crypto.randomUUID(),name:document.getElementById('wineName').value.trim(),appellation:document.getElementById('wineAppellation').value.trim(),year:document.getElementById('wineYear').value.trim(),producer:document.getElementById('wineProducer').value.trim(),color:document.getElementById('wineColor').value,qty,price:document.getElementById('winePrice').value===''?'':Number(document.getElementById('winePrice').value),notes:document.getElementById('wineNotes').value.trim(),drinkDate:document.getElementById('wineDrinkDate').value,photos:stagedPhotos,compartment:selected};if(!w.name)return;let existing=id?data.wines.find(x=>x.id===id):null;
+if(existing){let other=count(selected)-(existing.compartment===selected?existing.qty:0);if(existing.compartment===selected&&other+qty>data.capacities[selected]){alert('La quantité dépasse la capacité disponible.');return}let old={...existing};Object.assign(existing,w);addHistory('Modification',w,qty,old.compartment+1,selected+1)}
+else{if(count(selected)+qty>data.capacities[selected]){alert('Pas assez de place dans ce compartiment.');return}data.wines.push(w);addHistory('Entrée',w,qty,null,selected+1)}
+document.getElementById('wineDialog').close();save()};
+function removeBottle(id){let w=data.wines.find(x=>x.id===id);if(!w)return;if(!confirm(`Enregistrer la sortie d'une bouteille de « ${w.name} » ?`))return;w.qty--;addHistory('Sortie',w,1,selected+1,null);if(w.qty<=0)data.wines=data.wines.filter(x=>x.id!==id);save()}
+function openMove(id){let w=data.wines.find(x=>x.id===id);if(!w)return;document.getElementById('moveTarget').innerHTML=data.capacities.map((c,i)=>i!==w.compartment?`<option value="${i}">Compartiment ${i+1} (${Math.max(0,c-count(i))} places libres)</option>`:'').join('');document.getElementById('moveQty').max=w.qty;document.getElementById('moveQty').value=1;document.getElementById('moveForm').dataset.id=id;document.getElementById('moveDialog').showModal()}
+document.getElementById('cancelMove').onclick=()=>document.getElementById('moveDialog').close();
+document.getElementById('moveForm').onsubmit=e=>{e.preventDefault();let w=data.wines.find(x=>x.id===e.target.dataset.id),to=+document.getElementById('moveTarget').value,q=+document.getElementById('moveQty').value;if(!w)return;if(count(to)+q>data.capacities[to]){alert('Pas assez de place dans le compartiment de destination.');return}let original={...w};let dest=data.wines.find(x=>x.compartment===to&&x.name===w.name&&x.year===w.year&&x.producer===w.producer&&x.appellation===w.appellation);if(dest)dest.qty+=q;else data.wines.push({...w,id:crypto.randomUUID(),qty:q,compartment:to});w.qty-=q;if(w.qty<=0)data.wines=data.wines.filter(x=>x.id!==original.id);addHistory('Déplacement',w,q,original.compartment+1,to+1);document.getElementById('moveDialog').close();save()};
+document.getElementById('editCapacities').onclick=()=>{showView('settings');document.getElementById('capacityForm').scrollIntoView({behavior:'smooth'})};
+function renderSettings(){document.getElementById('capacityForm').innerHTML=data.capacities.map((c,i)=>`<label>Compartiment ${i+1}<input type="number" min="${count(i)}" max="999" name="c${i}" value="${c}" required></label>`).join('')+`<button type="submit">Enregistrer les capacités</button>`;
+document.getElementById('capacityForm').onsubmit=e=>{e.preventDefault();let vals=data.capacities.map((c,i)=>+e.target.elements['c'+i].value);if(vals.some((v,i)=>!Number.isFinite(v)||v<count(i)||v<0)){alert('Une capacité ne peut pas être inférieure au nombre de bouteilles déjà présentes.');return}data.capacities=vals;save();renderSettings();alert('Capacités enregistrées.')};
+document.getElementById('history').innerHTML=data.history.length?data.history.slice(0,25).map(h=>`<div class="historyitem"><strong>${esc(h.action)}</strong> · ${esc(h.name)} — ${h.qty} bouteille${h.qty>1?'s':''}<div class="small">${new Date(h.date).toLocaleString('fr-FR')}${h.from?' · depuis compartiment '+h.from:''}${h.to?' · vers compartiment '+h.to:''}</div></div>`).join(''):'<div class="empty">Aucun mouvement enregistré.</div>'}
+document.getElementById('exportBtn').onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sauvegarde-ma-cave.json';a.click();URL.revokeObjectURL(a.href)};
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let d=JSON.parse(await f.text());if(!Array.isArray(d.capacities)||!Array.isArray(d.wines))throw Error();if(confirm('Remplacer les données actuelles par cette sauvegarde ?')){data={...defaults,...d};save();renderSettings();alert('Sauvegarde importée.')}}catch(err){alert('Fichier de sauvegarde invalide.')}e.target.value=''};
+document.getElementById('clearHistory').onclick=()=>{if(confirm('Effacer tout l’historique des mouvements ?')){data.history=[];save();renderSettings()}};
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+render();renderPanel();
+</script>
+</body></html>

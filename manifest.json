@@ -1,0 +1,10 @@
+{
+  "name": "Ma cave à vin",
+  "short_name": "Ma cave",
+  "description": "Gestion des bouteilles et compartiments de cave à vin",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f3ef",
+  "theme_color": "#401b2a",
+  "icons": []
+}

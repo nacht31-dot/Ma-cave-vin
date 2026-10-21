@@ -1,0 +1,9 @@
+MA CAVE À VIN — prototype web mobile
+
+Contenu : index.html, manifest.json, sw.js.
+Fonctions : 5 compartiments, fiches vin, photos, date indicative de dégustation, température de service, entrées/sorties, déplacements, historique et sauvegarde JSON.
+
+Mise à jour : lorsqu'on appuie sur un compartiment de la photo ou de la liste, le détail s'ouvre directement en haut de l'écran. Le bouton « Retour à la cave » ramène à la vue générale.
+
+Installation Android : héberger ces fichiers sur une adresse HTTPS, ouvrir l'adresse dans Chrome Android et choisir « Installer l'application » ou « Ajouter à l'écran d'accueil ».
+Les données restent enregistrées localement dans le navigateur. Exporter régulièrement une sauvegarde.
