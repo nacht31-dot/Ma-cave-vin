@@ -1,13 +1,7 @@
-MA CAVE A VIN — VERSION DE TEST
+MA CAVE À VIN — VERSION CORRIGÉE DE TEST
 
-Fichiers à déposer à la racine du dépôt GitHub Pages :
-- index.html
-- manifest.json
-- sw.js
-- icon.svg
+Contenu à placer à la racine du dépôt GitHub Pages : index.html, manifest.json, sw.js, icon.svg, cave.jpg.
 
-Fonctions : 5 compartiments avec capacité réglable, emplacement « Bouteilles en attente » illimité, transferts entre attente et compartiments, fiches vin avec description, cépages, accords mets-vins, période de consommation, température, prix et photo, export/import JSON.
+Cette version conserve les fonctions de gestion de base, ajoute une photo de cave avec cinq zones tactiles, retire la liste latérale et place les compartiments dans une vue dédiée. Ajoute un vin depuis le bouton dans la vue du compartiment. Le bouton Sauvegarde et restauration ouvre les fonctions d'export/import JSON.
 
-Les données restent dans le stockage local du navigateur. Elles ne sont pas synchronisées entre appareils. Exportez régulièrement une sauvegarde JSON. Les photos peuvent augmenter la taille de la sauvegarde.
-
-IMPORTANT POUR METTRE À JOUR UNE VERSION EXISTANTE : déposez les fichiers à la racine du dépôt et validez le commit. Choisissez de remplacer les fichiers de même nom. Ne supprimez pas le dépôt. Après publication, ouvrez le site puis actualisez-le. Si l'ancienne version reste affichée, fermez l'onglet et rouvrez-le ; les nouvelles versions du service worker mettent à jour le cache.
+Les données restent dans le stockage local du navigateur. Exportez une sauvegarde avant de remplacer la version précédente. L'icône web peut nécessiter de supprimer puis recréer le raccourci Chrome sur Android.
