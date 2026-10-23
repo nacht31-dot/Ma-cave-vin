@@ -1,9 +1,14 @@
-MA CAVE À VIN — VERSION CORRIGÉE DE TEST
+MA CAVE À VIN — VERSION 1.0.4
 
-Contenu à placer à la racine du dépôt GitHub Pages : index.html, manifest.json, sw.js, icon.svg, cave.jpg.
+Contenu : index.html, manifest.json, sw.js, icon.svg, cave.jpg.
 
-Cette version conserve les fonctions de gestion de base, ajoute une photo de cave avec cinq zones tactiles, retire la liste latérale et place les compartiments dans une vue dédiée. Ajoute un vin depuis le bouton dans la vue du compartiment. Le bouton Sauvegarde et restauration ouvre les fonctions d'export/import JSON.
+Mise à jour :
+1. Faites une sauvegarde JSON depuis l'application actuelle avant remplacement.
+2. Décompressez cette archive.
+3. Téléversez les fichiers contenus à la racine du dépôt GitHub (Add file > Upload files).
+4. Validez avec Commit changes.
+5. Attendez la publication GitHub Pages, puis fermez et rouvrez le site. Si l'ancienne version reste affichée, actualisez la page ou fermez complètement Chrome.
 
-Les données restent dans le stockage local du navigateur. Exportez une sauvegarde avant de remplacer la version précédente. L'icône web peut nécessiter de supprimer puis recréer le raccourci Chrome sur Android.
+Le cache du service worker a été renommé pour forcer la récupération des nouveaux fichiers. Les données sont stockées localement dans le navigateur ; elles ne sont pas synchronisées entre appareils. Exportez une sauvegarde avant toute mise à jour.
 
-Mise à jour : les cinq zones cliquables sur la photo affichent maintenant le compteur occupé/capacité (ex. 0 / 24).
+Fonctions incluses : 5 compartiments avec compteurs, bouteilles en attente illimitées, transferts, ajout par photo ou manuellement, fiches détaillées, capacité, sauvegarde/restauration.
