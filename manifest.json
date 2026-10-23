@@ -1,6 +1,6 @@
 {
   "name": "Ma cave à vin",
-  "description": "Gestion locale de cave à vin — version 1.0.4",
+  "description": "Gestion locale de cave à vin — version 1.0.7",
   "short_name": "Ma cave",
   "start_url": "./",
   "scope": "./",
