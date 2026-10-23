@@ -1,7 +1,13 @@
-MA CAVE À VIN — fichiers pour GitHub Pages
+MA CAVE A VIN — VERSION DE TEST
 
-Téléversez à la racine du dépôt les fichiers suivants : index.html, manifest.json, icon.svg et sw.js.
-Ne téléversez pas vos données de cave ou le fichier de sauvegarde JSON : les données personnelles restent dans le stockage local du navigateur.
+Fichiers à déposer à la racine du dépôt GitHub Pages :
+- index.html
+- manifest.json
+- sw.js
+- icon.svg
 
-La sauvegarde JSON contient l'inventaire et les photos que vous avez ajoutées. Conservez-la dans un endroit privé.
-Attention : vider les données du navigateur peut supprimer la cave locale. Exportez régulièrement une sauvegarde.
+Fonctions : 5 compartiments avec capacité réglable, emplacement « Bouteilles en attente » illimité, transferts entre attente et compartiments, fiches vin avec description, cépages, accords mets-vins, période de consommation, température, prix et photo, export/import JSON.
+
+Les données restent dans le stockage local du navigateur. Elles ne sont pas synchronisées entre appareils. Exportez régulièrement une sauvegarde JSON. Les photos peuvent augmenter la taille de la sauvegarde.
+
+IMPORTANT POUR METTRE À JOUR UNE VERSION EXISTANTE : déposez les fichiers à la racine du dépôt et validez le commit. Choisissez de remplacer les fichiers de même nom. Ne supprimez pas le dépôt. Après publication, ouvrez le site puis actualisez-le. Si l'ancienne version reste affichée, fermez l'onglet et rouvrez-le ; les nouvelles versions du service worker mettent à jour le cache.
