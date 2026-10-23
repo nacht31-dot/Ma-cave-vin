@@ -5,3 +5,5 @@ Contenu à placer à la racine du dépôt GitHub Pages : index.html, manifest.js
 Cette version conserve les fonctions de gestion de base, ajoute une photo de cave avec cinq zones tactiles, retire la liste latérale et place les compartiments dans une vue dédiée. Ajoute un vin depuis le bouton dans la vue du compartiment. Le bouton Sauvegarde et restauration ouvre les fonctions d'export/import JSON.
 
 Les données restent dans le stockage local du navigateur. Exportez une sauvegarde avant de remplacer la version précédente. L'icône web peut nécessiter de supprimer puis recréer le raccourci Chrome sur Android.
+
+Mise à jour : les cinq zones cliquables sur la photo affichent maintenant le compteur occupé/capacité (ex. 0 / 24).
