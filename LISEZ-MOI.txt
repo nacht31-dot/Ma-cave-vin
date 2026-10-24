@@ -11,3 +11,5 @@ Version 1.1.5 : champ Degré d’alcool (% vol.), lecture OCR et sauvegarde des 
 Version 1.1.6 : redressement manuel des étiquettes (quatre coins). La courbure cylindrique complète n’est pas corrigée.
 
 Version 1.1.7 : tentative de détection automatique des contours et correction de perspective par OpenCV.js (connexion nécessaire au premier chargement). Si la détection échoue, la photo d’origine est conservée et le redressement manuel reste disponible. La courbure cylindrique n’est pas corrigée intégralement.
+
+Version 1.1.8 : transfert partiel ou total avec sélection systématique du nombre de bouteilles (1 à quantité disponible), contrôle de capacité et conservation des fiches/photos.
