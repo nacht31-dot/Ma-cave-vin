@@ -12,3 +12,5 @@ Mise à jour :
 Le cache du service worker a été renommé pour forcer la récupération des nouveaux fichiers. Les données sont stockées localement dans le navigateur ; elles ne sont pas synchronisées entre appareils. Exportez une sauvegarde avant toute mise à jour.
 
 Fonctions incluses : 5 compartiments avec compteurs, bouteilles en attente illimitées, transferts, ajout par photo ou manuellement, fiches détaillées, capacité, sauvegarde/restauration.
+
+Version 1.1.2 : ajout successif de photos via appareil photo et lecture OCR locale des etiquettes (connexion necessaire pour charger le moteur OCR). Verifier les champs reconnus.
