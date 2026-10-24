@@ -7,3 +7,7 @@ Le champ « À boire idéalement jusqu’au » a été supprimé. « À boire à
 Les photos de bouteilles sont affichées sans coins arrondis. Cela ne corrige pas la courbure optique d’une étiquette photographiée sur une bouteille : un redressement géométrique nécessiterait un traitement supplémentaire.
 
 Version 1.1.5 : champ Degré d’alcool (% vol.), lecture OCR et sauvegarde des données.
+
+Version 1.1.6 : redressement manuel des étiquettes (quatre coins). La courbure cylindrique complète n’est pas corrigée.
+
+Version 1.1.7 : tentative de détection automatique des contours et correction de perspective par OpenCV.js (connexion nécessaire au premier chargement). Si la détection échoue, la photo d’origine est conservée et le redressement manuel reste disponible. La courbure cylindrique n’est pas corrigée intégralement.
