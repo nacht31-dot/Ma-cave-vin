@@ -40,7 +40,7 @@ header{position:sticky;top:0;z-index:5}
 <section class="panel" id="formPanel"><h2 id="formTitle">Ajouter un vin</h2><div id="addChoice" class="add-choice"><p class="muted">Comment souhaites-tu ajouter ce vin ?</p><div class="grid"><button class="btn" type="button" id="takePhotoBtn">📷 Prendre une photo</button><button class="btn secondary" type="button" id="manualAddBtn">✍️ Ajouter manuellement</button></div><input id="quickPhoto" class="hidden" type="file" accept="image/*" capture="environment"></div><p class="muted" id="formHint">Les champs avec * sont obligatoires. Les bouteilles en attente n'ont aucune limite de capacité.</p><form id="wineForm" class="hidden"><h3 style="margin:12px 0 4px">Photos de la bouteille</h3><div><p class="muted">Tu peux prendre plusieurs photos et lire leurs informations. La sélection de fichiers est disponible en bas de la fiche.</p><div class="toolbar"><button class="btn secondary" type="button" id="addCameraPhoto">📷 Ajouter une photo (dos, capsule…)</button><button class="btn secondary" type="button" id="scanPhotos">🔎 Lire les informations des photos</button></div><input type="file" accept="image/*" capture="environment" id="extraCameraPhoto" class="hidden"><div id="ocrStatus" class="status" aria-live="polite"></div><div id="photoPreviewList" class="photo-preview-list"></div><p class="muted">Appuie sur une photo pour l’afficher en grand.</p></div><input type="hidden" id="editId"><div class="grid"><div><label for="name">Nom du vin *</label><input id="name" required maxlength="160"></div><div><label for="producer">Domaine / producteur</label><input id="producer"></div><div><label for="appellation">Appellation</label><input id="appellation"></div><div><label for="year">Millésime</label><input id="year" type="number" min="1900" max="2100" inputmode="numeric"></div><div><label for="color">Couleur</label><select id="color"><option>Rouge</option><option>Blanc</option><option>Rosé</option><option>Effervescent</option><option>Autre</option></select></div><div><label for="grapes">Cépages</label><input id="grapes" placeholder="Ex. Merlot, Cabernet Sauvignon"></div><div><label for="qty">Quantité *</label><input id="qty" type="number" min="1" value="1" required></div><div><label for="price">Prix par bouteille (€)</label><input id="price" type="number" min="0" step="0.01"></div><div><label for="alcohol">Degré d’alcool (% vol.)</label><input id="alcohol" type="number" min="0" max="30" step="0.1" inputmode="decimal" placeholder="Ex. 13,5"></div><div><label for="drinkFrom">À boire à partir de</label><input id="drinkFrom" type="date"></div><div><label for="temp">Température de dégustation (°C)</label><input id="temp" type="number" min="0" max="30" step="0.5"></div></div><label for="pairings">Accords mets et vins</label><textarea id="pairings" placeholder="Ex. agneau rôti, fromages affinés…"></textarea><label for="notes">Notes personnelles</label><textarea id="notes" placeholder="Où acheté, occasion, avis de dégustation…"></textarea><div class="photo-file-bottom"><label for="photo">Sélectionner des fichiers photo (galerie du téléphone)</label><input id="photo" type="file" accept="image/*" multiple><p class="muted">Tu peux sélectionner plusieurs photos de la bouteille depuis ton appareil.</p></div><div class="toolbar"><button class="btn" type="submit" id="submitWine">Enregistrer le vin</button><button class="btn secondary hidden" type="button" id="cancelEdit">Annuler</button></div><div class="status" id="formStatus" aria-live="polite"></div></form></section>
 <section class="panel hidden" id="catalogPanel"><div class="row"><h2>Tous les vins · Actuels et historiques</h2><button class="btn secondary" id="closeCatalog">← Ma cave</button></div><p class="muted">Les vins encore présents et les bouteilles sorties sont regroupés par référence. Tu peux retirer manuellement une référence de l’historique sans supprimer les bouteilles encore en cave. Les sorties sont conservées dans l’historique à partir de cette version. Les vins supprimés avant cette mise à jour ne peuvent pas être retrouvés.</p><div id="catalogFilters" class="row" style="align-items:end;flex-wrap:wrap;gap:10px"><div style="flex:1;min-width:145px"><label for="catalogFilterField">Filtrer par</label><select id="catalogFilterField"></select></div><div style="flex:2;min-width:180px"><label for="catalogFilterValue">Recherche</label><input id="catalogFilterValue" placeholder="Saisir une valeur…" autocomplete="off"></div></div><div class="toolbar"><button class="btn secondary" id="clearCatalogFilters">Effacer les filtres</button></div><p id="catalogCount" class="muted"></p><div id="catalogList"></div></section>
 <section class="panel hidden" id="capacityPanel"><h2>Capacité des compartiments</h2><p class="muted">Chaque compartiment physique possède une capacité fixe que tu peux ajuster ici. Les bouteilles en attente sont illimitées.</p><div class="grid" id="capacityFields"></div><button class="btn" id="saveCapacities">Enregistrer les capacités</button><button class="btn secondary" id="closeCapacity">Fermer</button></section>
-<section class="panel" id="backupPanel"><div class="row"><h2>Sauvegarde et restauration</h2><button class="btn secondary" id="closeBackup">Fermer</button></div><p class="muted">Les données et photos restent dans le stockage de ce navigateur. L’export crée un fichier JSON contenant tes vins, photos et historique. Sur Android, le navigateur te proposera de télécharger ce fichier : c’est normal. Conserve-le dans tes fichiers ou ton cloud personnel. Évite d’effacer les données du navigateur.</p><div class="toolbar"><button class="btn secondary" id="export" type="button">Télécharger ma sauvegarde JSON</button><label class="btn secondary" for="importFile" style="display:inline-block;margin:0;cursor:pointer">Importer une sauvegarde</label><input class="hidden" id="importFile" type="file" accept="application/json"></div><div id="backupStatus" class="status"></div></section><p class="footer">Version 1.1.21 — Cinq clayettes et rangement au fond — Six compartiments — Plusieurs photos par vin — Les données sont locales à ce navigateur et ne sont pas synchronisées entre appareils.</p></main>
+<section class="panel" id="backupPanel"><div class="row"><h2>Sauvegarde et restauration</h2><button class="btn secondary" id="closeBackup">Fermer</button></div><p class="muted">Les données et photos restent dans le stockage de ce navigateur. L’export crée un fichier JSON contenant tes vins, photos et historique. Sur Android, le navigateur te proposera de télécharger ce fichier : c’est normal. Conserve-le dans tes fichiers ou ton cloud personnel. Évite d’effacer les données du navigateur.</p><div class="toolbar"><button class="btn secondary" id="export" type="button">Télécharger ma sauvegarde JSON</button><label class="btn secondary" for="importFile" style="display:inline-block;margin:0;cursor:pointer">Importer une sauvegarde</label><input class="hidden" id="importFile" type="file" accept="application/json"></div><div id="backupStatus" class="status"></div></section><p class="footer">Version 1.1.22 — Cinq clayettes et rangement au fond — Six compartiments — Plusieurs photos par vin — Les données sont locales à ce navigateur et ne sont pas synchronisées entre appareils.</p></main>
 <div id="photoViewer" class="hidden" role="dialog" aria-modal="true" aria-label="Photo agrandie"><button type="button" id="closePhotoViewer" aria-label="Fermer la photo">✕ Fermer</button><img id="largePhoto" alt="Photo de bouteille agrandie"></div>
 <script>
 const KEY='maCaveVin_v1';const $=id=>document.getElementById(id);const defaultState={selected:1,view:'home',formOpen:false,capacities:{1:24,2:24,3:24,4:24,5:24,6:24},wines:[],history:[]};let state;try{state=JSON.parse(localStorage.getItem(KEY)||'null')||defaultState}catch{state=defaultState}state.view='home';state.formOpen=false;state.capacities={...{1:24,2:24,3:24,4:24,5:24,6:24},...(state.capacities||{})};// Respecter toutes les capacités personnalisées, y compris celle du compartiment 6.
@@ -80,7 +80,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('photoViewer').c
 document.addEventListener('click',e=>{const img=e.target.closest('img.zoomable-photo');if(!img)return;if(img.hasAttribute('data-photo-index'))showPhoto(currentPhotos[Number(img.dataset.photoIndex)]);else showPhoto(img.src)});
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('img.zoomable-photo')){e.preventDefault();e.target.click()}});
 
-function readPhoto(file){return new Promise((resolve,reject)=>{if(!file.type.startsWith('image/')){reject(new Error('Choisis un fichier image.'));return}const reader=new FileReader();reader.onerror=()=>reject(new Error('Impossible de lire une photo.'));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error('Cette image ne peut pas être ouverte.'));img.onload=()=>{const scale=Math.min(1,1400/Math.max(img.naturalWidth,img.naturalHeight));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.72))};img.src=reader.result};reader.readAsDataURL(file)})}
+function readPhoto(file){return new Promise((resolve,reject)=>{if(!file.type.startsWith('image/')){reject(new Error('Choisis un fichier image.'));return}const reader=new FileReader();reader.onerror=()=>reject(new Error('Impossible de lire une photo.'));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error('Cette image ne peut pas être ouverte.'));img.onload=()=>{const scale=Math.min(1,1000/Math.max(img.naturalWidth,img.naturalHeight));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.58))};img.src=reader.result};reader.readAsDataURL(file)})}
 
 $('photo').addEventListener('change',async()=>{const files=Array.from($('photo').files||[]);if(!files.length)return;try{if(currentPhotos.length+files.length>5){alert('Maximum 5 photos par fiche.');$('photo').value='';return}const added=await Promise.all(files.map(readPhoto));currentPhotos.push(...added);renderPhotoPreviews();$('formStatus').textContent=`${currentPhotos.length} photo(s) prête(s) à être enregistrée(s).`;}catch(err){alert(err.message)}$('photo').value=''});
 // Lecture OCR dans le navigateur : aucun envoi des photos vers un service distant.
@@ -155,7 +155,48 @@ $('scanPhotos').onclick=async()=>{
  }catch(err){$('ocrStatus').textContent='Lecture impossible : '+err.message}
  finally{if(worker)try{await worker.terminate()}catch(e){}btn.disabled=false}
 };
-$('wineForm').onsubmit=e=>{
+
+// Les photos sont stockées en base64 dans localStorage, dont la limite est faible.
+// Compresser une copie avant de remplacer les données permet de ne rien perdre
+// si le navigateur refuse encore l'enregistrement.
+async function shrinkPhoto(src,maxSide=680,quality=0.48){
+ if(typeof src!=='string'||!src.startsWith('data:image/'))return src;
+ return new Promise(resolve=>{
+  const img=new Image();
+  img.onerror=()=>resolve(src);
+  img.onload=()=>{
+   try{
+    const ratio=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+    const c=document.createElement('canvas');
+    c.width=Math.max(1,Math.round(img.naturalWidth*ratio));
+    c.height=Math.max(1,Math.round(img.naturalHeight*ratio));
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const smaller=c.toDataURL('image/jpeg',quality);
+    resolve(smaller.length<src.length?smaller:src);
+   }catch(_){resolve(src)}
+  };
+  img.src=src;
+ });
+}
+async function compactStatePhotos(source){
+ const result={...source,wines:source.wines.map(w=>({...w})),history:(source.history||[]).map(w=>({...w}))};
+ const cache=new Map();
+ async function shrink(s){
+  if(!s||typeof s!=='string')return s;
+  if(!cache.has(s))cache.set(s,await shrinkPhoto(s));
+  return cache.get(s);
+ }
+ for(const w of [...result.wines,...result.history]){
+  const images=Array.isArray(w.photos)&&w.photos.length?w.photos:(w.photo?[w.photo]:[]);
+  w.photos=[];
+  for(const image of images)w.photos.push(await shrink(image));
+  // Éviter de conserver deux copies identiques de la première photo.
+  delete w.photo;
+ }
+ return result;
+}
+
+$('wineForm').onsubmit=async e=>{
  e.preventDefault();
  $('saveConfirmation').classList.add('hidden');
  const status=$('formStatus');
@@ -171,14 +212,30 @@ $('wineForm').onsubmit=e=>{
    const cap=capacityAt(target);
    if(already+qty>cap){status.textContent=`Impossible d'enregistrer : compartiment ${target} : ${already} bouteille(s) déjà présentes, ${qty} demandée(s), capacité ${cap}.`;return}
   }
-  const w={id,compartment:target,name,producer:$('producer').value.trim(),appellation:$('appellation').value.trim(),year:$('year').value,color:$('color').value,grapes:$('grapes').value.trim(),qty,price:$('price').value,drinkFrom:$('drinkFrom').value,temp:$('temp').value,alcohol:$('alcohol').value,pairings:$('pairings').value.trim(),notes:$('notes').value.trim(),photos:currentPhotos.slice(),photo:currentPhotos[0]||(old?.photo||'')};
+  const w={id,compartment:target,name,producer:$('producer').value.trim(),appellation:$('appellation').value.trim(),year:$('year').value,color:$('color').value,grapes:$('grapes').value.trim(),qty,price:$('price').value,drinkFrom:$('drinkFrom').value,temp:$('temp').value,alcohol:$('alcohol').value,pairings:$('pairings').value.trim(),notes:$('notes').value.trim(),photos:currentPhotos.slice()};
   const previous=state.wines;
   state.wines=[...previous.filter(x=>x.id!==id),w];
   try{save()}catch(storageError){
-   state.wines=previous;
-   const isQuota=storageError&&(storageError.name==='QuotaExceededError'||storageError.code===22);
-   status.textContent=isQuota?'Mémoire du navigateur pleine : le vin n’a pas été enregistré. Exporte une sauvegarde puis réduis le nombre ou la taille des photos.':'Enregistrement impossible : '+(storageError.message||storageError);
-   return;
+   const isQuota=storageError&&(storageError.name==='QuotaExceededError'||storageError.code===22||storageError.name==='NS_ERROR_DOM_QUOTA_REACHED');
+   if(!isQuota){
+    state.wines=previous;
+    status.textContent='Enregistrement impossible : '+(storageError.message||storageError);
+    return;
+   }
+   status.textContent='Espace limité : optimisation des photos, merci de patienter…';
+   const uncompressedState=state;
+   try{
+    const compacted=await compactStatePhotos(state);
+    // Ne remplacer les données en mémoire qu'après la sauvegarde réussie.
+    localStorage.setItem(KEY,JSON.stringify(compacted));
+    state=compacted;
+    currentPhotos=(state.wines.find(x=>x.id===id)?.photos||[]).slice();
+   }catch(retryError){
+    state=uncompressedState;
+    state.wines=previous;
+    status.textContent='Stockage toujours saturé. Le vin n’a pas été enregistré et aucune photo existante n’a été supprimée. Exporte une sauvegarde JSON avant de faire de la place.';
+    return;
+   }
   }
   // Fermer explicitement le formulaire après une sauvegarde réussie.
   const savedName=name;
