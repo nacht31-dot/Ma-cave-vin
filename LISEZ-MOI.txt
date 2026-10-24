@@ -1,16 +1,9 @@
-MA CAVE À VIN — VERSION 1.0.4
+Ma cave à vin — version 1.1.4
 
-Contenu : index.html, manifest.json, sw.js, icon.svg, cave.jpg.
+Décompresser puis envoyer les six fichiers à la racine du dépôt GitHub Pages.
+Exporter une sauvegarde JSON avant toute mise à jour.
+La photo de la cave comporte 5 clayettes et une zone de rangement au fond, sans cadres ni pastilles de couleur.
+Le champ « À boire idéalement jusqu’au » a été supprimé. « À boire à partir de » est conservé.
+Les photos de bouteilles sont affichées sans coins arrondis. Cela ne corrige pas la courbure optique d’une étiquette photographiée sur une bouteille : un redressement géométrique nécessiterait un traitement supplémentaire.
 
-Mise à jour :
-1. Faites une sauvegarde JSON depuis l'application actuelle avant remplacement.
-2. Décompressez cette archive.
-3. Téléversez les fichiers contenus à la racine du dépôt GitHub (Add file > Upload files).
-4. Validez avec Commit changes.
-5. Attendez la publication GitHub Pages, puis fermez et rouvrez le site. Si l'ancienne version reste affichée, actualisez la page ou fermez complètement Chrome.
-
-Le cache du service worker a été renommé pour forcer la récupération des nouveaux fichiers. Les données sont stockées localement dans le navigateur ; elles ne sont pas synchronisées entre appareils. Exportez une sauvegarde avant toute mise à jour.
-
-Fonctions incluses : 5 compartiments avec compteurs, bouteilles en attente illimitées, transferts, ajout par photo ou manuellement, fiches détaillées, capacité, sauvegarde/restauration.
-
-Version 1.1.2 : ajout successif de photos via appareil photo et lecture OCR locale des etiquettes (connexion necessaire pour charger le moteur OCR). Verifier les champs reconnus.
+Version 1.1.5 : champ Degré d’alcool (% vol.), lecture OCR et sauvegarde des données.
