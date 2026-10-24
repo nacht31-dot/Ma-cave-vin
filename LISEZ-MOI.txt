@@ -15,3 +15,5 @@ Version 1.1.7 : tentative de détection automatique des contours et correction d
 Version 1.1.8 : transfert partiel ou total avec sélection systématique du nombre de bouteilles (1 à quantité disponible), contrôle de capacité et conservation des fiches/photos.
 
 Version 1.1.12 : retrait complet du redressement manuel et de la détection automatique. Toucher une photo dans la fiche ou la liste pour l’afficher en grand, fermer avec ✕ ou en touchant le fond.
+
+Version 1.1.23 : stockage IndexedDB. Lors du premier lancement, les anciennes données localStorage sont copiées dans IndexedDB puis vérifiées par une écriture réussie avant retrait de la copie locale. Effectuez une sauvegarde JSON AVANT la mise à jour. Ne supprimez jamais les données du navigateur sans sauvegarde.
